@@ -1,5 +1,4 @@
 <img width="1536" height="1024" alt="ChatGPT Image Apr 24, 2026, 06_46_05 PM" src="https://github.com/user-attachments/assets/823e214e-7fa2-4547-93dc-64fb017d2791" />
-
 # 💱 3mlati (عملاتي)
 
 3mlati is a modern, responsive web application that allows users to convert currencies quickly and efficiently.
@@ -49,6 +48,18 @@ Built with a focus on simplicity and real-world usability, it supports both glob
 
 👉 https://mlaticurrency.web.app/
 
+---
+
+## 👥 Team
+
+This project was developed collaboratively by:
+
+* **Hussein Amer**
+* **Rami Rafed**
+* **Zain Abdein**
+
+---
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
@@ -60,16 +71,6 @@ Feel free to fork this repo and submit a pull request.
 ## 📄 License
 
 This project is licensed under the **MIT License** — feel free to use and modify it.
-
----
-
-## 👨‍💻 Author
-
-**Hussein Amer**
-
-* 💻 GitHub: https://github.com/Hussein35847
-* 🌐 Portfolio: https://husseinamerportfolio.web.app/
-* 💼 LinkedIn: https://www.linkedin.com/in/hussein-amer-3845693ba/
 
 ---
 
