@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عملاتي 3mlati</title>
+        <meta name="description"
+            content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IRQ, and SYR.">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/fdQCb7W9/icon.png">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <main class="container">
+        <header class="fade-in-up">
+            <div class="brand">
+                <div class="logo-icon glass">
+                    <ion-icon name="wallet-outline"></ion-icon>
+                </div>
+                <h1 class="logo">عملاتي <span>3mlati</span></h1>
+            </div>
+            <p class="subtitle">Seamless Currency Transfer</p>
+        </header>
+
+        <div class="converter-card glass fade-in-up delay-1">
+
+            <!-- From Section -->
+            <div class="input-section">
+                <div class="section-label">You Send</div>
+                <div class="input-group glass-input">
+                    <div class="currency-selector">
+                        <img src="https://flagcdn.com/w40/jo.png" alt="JOD" class="flag-icon" id="from-flag">
+                        <select id="from-currency" class="currency-select">
+                            <option value="JOD">JOD</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="TRY">TRY</option>
+                            <option value="IRQ">IRQ</option>
+                            <option value="SYR">SYR</option>
+                        </select>
+                        <ion-icon name="chevron-down-outline" class="select-arrow"></ion-icon>
+                    </div>
+                    <input type="number" id="from-amount" value="100" min="0" placeholder="0.00" class="amount-input">
+                </div>
+                <div class="currency-name" id="from-name">Jordanian Dinar</div>
+            </div>
+
+            <!-- Swap Divider -->
+            <div class="swap-container">
+                <div class="line"></div>
+                <button id="swap-btn" class="swap-btn glass-btn" aria-label="Swap currencies">
+                    <ion-icon name="swap-vertical-outline"></ion-icon>
+                </button>
+                <div class="line"></div>
+            </div>
+
+            <!-- To Section -->
+            <div class="input-section">
+                <div class="section-label">They Receive</div>
+                <div class="input-group glass-input focus-highlight">
+                    <div class="currency-selector">
+                        <img src="https://flagcdn.com/w40/us.png" alt="USD" class="flag-icon" id="to-flag">
+                        <select id="to-currency" class="currency-select">
+                            <option value="USD" selected>USD</option>
+                            <option value="JOD">JOD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="TRY">TRY</option>
+                            <option value="IRQ">IRQ</option>
+                            <option value="SYR">SYR</option>
+                        </select>
+                        <ion-icon name="chevron-down-outline" class="select-arrow"></ion-icon>
+                    </div>
+                    <input type="text" id="to-amount" placeholder="0.00" class="amount-input" readonly>
+                </div>
+                <div class="currency-name" id="to-name">US Dollar</div>
+            </div>
+
+            <!-- Details -->
+            <div class="rate-details glass-details">
+                <div class="detail-row">
+                    <span class="detail-label">Exchange Rate</span>
+                    <span class="detail-value highlight" id="exchange-rate-text">1 JOD = 1.41 USD</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Transfer Fee</span>
+                    <span class="detail-value green">No Fees</span>
+                </div>
+                <div class="detail-row last">
+                    <span class="detail-label">Last Updated</span>
+                    <span class="detail-value" id="current-time">Just now</span>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <footer class="fade-in-up delay-2">
+            <p>Secure & Encrypted • 3mlati © 2026</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--gold-light);">Developed by Hussein Amer, Rami Rafid, and Zain Abedin</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
