@@ -1,7 +1,6 @@
-<img width="1536" height="1024" alt="ChatGPT Image Apr 24, 2026, 06_46_05 PM" src="https://github.com/user-attachments/assets/4d2d3e02-c101-4e77-8cf7-45655f4118c4" />
-# 💱 3mlati (عملاتي)
+<img width="1536" height="1024" alt="ChatGPT Image Apr 24, 2026, 06_46_05 PM" src="https://github.com/user-attachments/assets/823e214e-7fa2-4547-93dc-64fb017d2791" />
 
-> **Smart Currency Converter for the Middle East**
+# 💱 3mlati (عملاتي)
 
 3mlati is a modern, responsive web application that allows users to convert currencies quickly and efficiently.
 Built with a focus on simplicity and real-world usability, it supports both global and regional currencies.
@@ -49,12 +48,6 @@ Built with a focus on simplicity and real-world usability, it supports both glob
 ## 🚀 Live Demo
 
 👉 https://husseinamerportfolio.web.app/
-
----
-
-## 📸 Preview
-
-![3mlati Preview](./assets/screenshot.png)
 
 ---
 
