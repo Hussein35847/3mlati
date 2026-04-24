@@ -47,9 +47,7 @@ Built with a focus on simplicity and real-world usability, it supports both glob
 
 ## 🚀 Live Demo
 
-👉 [https://husseinamerportfolio.web.app](https://mlaticurrency.web.app/)
-
----
+👉 https://mlaticurrency.web.app/
 
 ## 🤝 Contributing
 
