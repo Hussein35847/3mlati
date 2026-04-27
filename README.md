@@ -1,8 +1,10 @@
 <img width="1536" height="1024" alt="ChatGPT Image Apr 24, 2026, 06_46_05 PM" src="https://github.com/user-attachments/assets/823e214e-7fa2-4547-93dc-64fb017d2791" />
-# 💱 3mlati (عملاتي)
 
-3mlati is a modern, responsive web application that allows users to convert currencies quickly and efficiently.
-Built with a focus on simplicity and real-world usability, it supports both global and regional currencies.
+# 💱 3mlati
+
+**3mlati** is a modern, responsive web application that allows users to convert currencies quickly and efficiently.
+
+It is designed with simplicity and real-world usability in mind, supporting both global and regional currencies.
 
 ---
 
@@ -12,15 +14,22 @@ Built with a focus on simplicity and real-world usability, it supports both glob
 * 🇺🇸 US Dollar (USD)
 * 🇪🇺 Euro (EUR)
 * 🇸🇾 Syrian Pound (SYR)
-* 🇮🇶 Iraqi Dinar (IRQ)
+* 🇮🇶 Iraqi Dinar (IQD)
 * 🇹🇷 Turkish Lira (TRY)
+* 🇮🇱 Israeli Shekel (ILS)
+* 🇮🇳 Indian Rupee (INR)
+* 🇯🇵 Japanese Yen (JPY)
+* 🇪🇬 Egyptian Pound (EGP)
+* 🇾🇪 Yemeni Rial (YER)
+* 🇷🇺 Russian Ruble (RUB)
+* 🇧🇷 Brazilian Real (BRL)
 
 ---
 
 ## ⚡ Features
 
 * 💱 Real-time currency conversion
-* 🔄 Swap currencies instantly
+* 🔄 Instant currency swapping
 * 📱 Fully responsive (mobile & desktop)
 * 🎯 Clean and intuitive UI
 * ⚠️ Input validation & error handling
@@ -64,7 +73,7 @@ This project was developed collaboratively by:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to fork this repo and submit a pull request.
+Feel free to fork this repository and submit a pull request.
 
 ---
 
@@ -76,12 +85,11 @@ This project is licensed under the **MIT License** — feel free to use and modi
 
 ## ⭐ Support
 
-If you like this project, consider giving it a star ⭐ — it helps a lot!
-
+If you like this project, consider giving it a star ⭐ — it really helps!
 # 💱 3mlati (عملاتي)
 
-3mlati هو تطبيق ويب حديث ومتجاوب يتيح للمستخدمين تحويل العملات بسرعة وكفاءة.  
-تم بناؤه مع التركيز على البساطة وسهولة الاستخدام في الواقع، ويدعم العملات العالمية والإقليمية.
+**3mlati** هو تطبيق ويب حديث ومتجاوب يتيح للمستخدمين تحويل العملات بسرعة وكفاءة.
+تم تصميمه مع التركيز على البساطة وسهولة الاستخدام، ويدعم مجموعة واسعة من العملات العالمية والإقليمية.
 
 ---
 
@@ -91,8 +99,15 @@ If you like this project, consider giving it a star ⭐ — it helps a lot!
 * 🇺🇸 الدولار الأمريكي (USD)
 * 🇪🇺 اليورو (EUR)
 * 🇸🇾 الليرة السورية (SYR)
-* 🇮🇶 الدينار العراقي (IRQ)
+* 🇮🇶 الدينار العراقي (IQD)
 * 🇹🇷 الليرة التركية (TRY)
+* 🇮🇱 الشيكل الإسرائيلي (ILS)
+* 🇮🇳 الروبية الهندية (INR)
+* 🇯🇵 الين الياباني (JPY)
+* 🇪🇬 الجنيه المصري (EGP)
+* 🇾🇪 الريال اليمني (YER)
+* 🇷🇺 الروبل الروسي (RUB)
+* 🇧🇷 الريال البرازيلي (BRL)
 
 ---
 
@@ -142,7 +157,6 @@ If you like this project, consider giving it a star ⭐ — it helps a lot!
 ## 🤝 المساهمة
 
 نرحب بالمساهمات، وفتح القضايا (Issues)، واقتراح الميزات!
-
 لا تتردد في عمل Fork للمستودع وإرسال Pull Request.
 
 ---
