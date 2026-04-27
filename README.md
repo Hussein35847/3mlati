@@ -10,19 +10,17 @@ It is designed with simplicity and real-world usability in mind, supporting both
 
 ## 🌍 Supported Currencies
 
-* 🇯🇴 Jordanian Dinar (JOD)
-* 🇺🇸 US Dollar (USD)
-* 🇪🇺 Euro (EUR)
-* 🇸🇾 Syrian Pound (SYR)
-* 🇮🇶 Iraqi Dinar (IQD)
-* 🇹🇷 Turkish Lira (TRY)
-* 🇮🇱 Israeli Shekel (ILS)
-* 🇮🇳 Indian Rupee (INR)
-* 🇯🇵 Japanese Yen (JPY)
-* 🇪🇬 Egyptian Pound (EGP)
-* 🇾🇪 Yemeni Rial (YER)
-* 🇷🇺 Russian Ruble (RUB)
-* 🇧🇷 Brazilian Real (BRL)
+This application supports a wide range of global and regional currencies, including:
+
+**USD, EUR, GBP, JPY, CHF, CAD, AUD, CNY,
+JOD, SAR, AED, QAR, KWD, BHD, EGP, MAD, DZD, TND, IQD, SYP, YER,
+INR, KRW, SGD, HKD, THB, MYR, IDR, PHP,
+SEK, NOK, DKK, PLN, CZK, HUF, RUB,
+BRL, MXN, ARS, CLP, COP, PEN,
+ZAR, NGN, KES, GHS, ETB**
+
+
+
 
 ---
 
@@ -95,19 +93,12 @@ If you like this project, consider giving it a star ⭐ — it really helps!
 
 ## 🌍 العملات المدعومة
 
-* 🇯🇴 الدينار الأردني (JOD)
-* 🇺🇸 الدولار الأمريكي (USD)
-* 🇪🇺 اليورو (EUR)
-* 🇸🇾 الليرة السورية (SYR)
-* 🇮🇶 الدينار العراقي (IQD)
-* 🇹🇷 الليرة التركية (TRY)
-* 🇮🇱 الشيكل الإسرائيلي (ILS)
-* 🇮🇳 الروبية الهندية (INR)
-* 🇯🇵 الين الياباني (JPY)
-* 🇪🇬 الجنيه المصري (EGP)
-* 🇾🇪 الريال اليمني (YER)
-* 🇷🇺 الروبل الروسي (RUB)
-* 🇧🇷 الريال البرازيلي (BRL)
+***الدولار الأمريكي (USD)، اليورو (EUR)، الجنيه الإسترليني (GBP)، الين الياباني (JPY)، الفرنك السويسري (CHF)، الدولار الكندي (CAD)، الدولار الأسترالي (AUD)، اليوان الصيني (CNY)،  
+الدينار الأردني (JOD)، الريال السعودي (SAR)، الدرهم الإماراتي (AED)، الريال القطري (QAR)، الدينار الكويتي (KWD)، الدينار البحريني (BHD)، الجنيه المصري (EGP)، الدرهم المغربي (MAD)، الدينار الجزائري (DZD)، الدينار التونسي (TND)، الدينار العراقي (IQD)، الليرة السورية (SYP)، الريال اليمني (YER)،  
+الروبية الهندية (INR)، الوون الكوري (KRW)، الدولار السنغافوري (SGD)، دولار هونغ كونغ (HKD)، البات التايلاندي (THB)، الرينغيت الماليزي (MYR)، الروبية الإندونيسية (IDR)، البيزو الفلبيني (PHP)،  
+الكرونة السويدية (SEK)، الكرونة النرويجية (NOK)، الكرونة الدنماركية (DKK)، الزلوتي البولندي (PLN)، الكرونة التشيكية (CZK)، الفورنت المجري (HUF)، الروبل الروسي (RUB)،  
+الريال البرازيلي (BRL)، البيزو المكسيكي (MXN)، البيزو الأرجنتيني (ARS)، البيزو التشيلي (CLP)، البيزو الكولومبي (COP)، السول البيروفي (PEN)،  
+الراند الجنوب أفريقي (ZAR)، النيرة النيجيرية (NGN)، الشلن الكيني (KES)، السيدي الغاني (GHS)، البر الإثيوبي (ETB)**
 
 ---
 
