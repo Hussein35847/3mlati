@@ -5,8 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عملاتي 3mlati</title>
-        <meta name="description"
-            content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IRQ, and SYR.">
+    <meta name="description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR.">
+    <meta name="keywords" content="3mlati, عملاتي, currency converter, exchange rates, currency transfer, SAR, Saudi Riyal">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://3mlati.com/">
+    <meta property="og:title" content="عملاتي 3mlati - Premium Currency Converter">
+    <meta property="og:description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR.">
+    <meta property="og:image" content="og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://3mlati.com/">
+    <meta property="twitter:title" content="عملاتي 3mlati - Premium Currency Converter">
+    <meta property="twitter:description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR.">
+    <meta property="twitter:image" content="og-image.png">
+
     <link rel="icon" type="image/png" href="https://i.ibb.co/fdQCb7W9/icon.png">
         <link
             href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap"
@@ -19,34 +34,31 @@
 <body>
     <main class="container">
         <header class="fade-in-up">
+            <div class="lang-switcher">
+                <button id="lang-btn" class="glass-btn" style="background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold-primary); color: var(--gold-light); padding: 0.4rem 0.8rem; border-radius: 8px; cursor: pointer; font-family: var(--font-ar); font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">عربي</button>
+            </div>
             <div class="brand">
                 <div class="logo-icon glass">
                     <ion-icon name="wallet-outline"></ion-icon>
                 </div>
                 <h1 class="logo">عملاتي <span>3mlati</span></h1>
             </div>
-            <p class="subtitle">Seamless Currency Transfer</p>
+            <p class="subtitle" id="subtitle-text">Seamless Currency Transfer</p>
         </header>
 
         <div class="converter-card glass fade-in-up delay-1">
 
             <!-- From Section -->
             <div class="input-section">
-                <div class="section-label">You Send</div>
+                <div class="section-label" id="you-send-text">You Send</div>
                 <div class="input-group glass-input">
-                    <div class="currency-selector">
+                    <div class="currency-selector" id="from-selector" onclick="openPicker('from')">
                         <img src="https://flagcdn.com/w40/jo.png" alt="JOD" class="flag-icon" id="from-flag">
-                        <select id="from-currency" class="currency-select">
-                            <option value="JOD">JOD</option>
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="TRY">TRY</option>
-                            <option value="IRQ">IRQ</option>
-                            <option value="SYR">SYR</option>
-                        </select>
+                        <span class="currency-select" id="from-currency-display">JOD</span>
+                        <input type="hidden" id="from-currency" value="JOD">
                         <ion-icon name="chevron-down-outline" class="select-arrow"></ion-icon>
                     </div>
-                    <input type="number" id="from-amount" value="100" min="0" placeholder="0.00" class="amount-input">
+                    <input type="number" id="from-amount" value="0" min="0" placeholder="0.00" class="amount-input">
                 </div>
                 <div class="currency-name" id="from-name">Jordanian Dinar</div>
             </div>
@@ -62,18 +74,12 @@
 
             <!-- To Section -->
             <div class="input-section">
-                <div class="section-label">They Receive</div>
+                <div class="section-label" id="they-receive-text">They Receive</div>
                 <div class="input-group glass-input focus-highlight">
-                    <div class="currency-selector">
+                    <div class="currency-selector" id="to-selector" onclick="openPicker('to')">
                         <img src="https://flagcdn.com/w40/us.png" alt="USD" class="flag-icon" id="to-flag">
-                        <select id="to-currency" class="currency-select">
-                            <option value="USD" selected>USD</option>
-                            <option value="JOD">JOD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="TRY">TRY</option>
-                            <option value="IRQ">IRQ</option>
-                            <option value="SYR">SYR</option>
-                        </select>
+                        <span class="currency-select" id="to-currency-display">USD</span>
+                        <input type="hidden" id="to-currency" value="USD">
                         <ion-icon name="chevron-down-outline" class="select-arrow"></ion-icon>
                     </div>
                     <input type="text" id="to-amount" placeholder="0.00" class="amount-input" readonly>
@@ -84,28 +90,54 @@
             <!-- Details -->
             <div class="rate-details glass-details">
                 <div class="detail-row">
-                    <span class="detail-label">Exchange Rate</span>
+                    <span class="detail-label" id="exchange-rate-label">Exchange Rate</span>
                     <span class="detail-value highlight" id="exchange-rate-text">1 JOD = 1.41 USD</span>
                 </div>
                 <div class="detail-row">
-                    <span class="detail-label">Transfer Fee</span>
-                    <span class="detail-value green">No Fees</span>
+                    <span class="detail-label" id="transfer-fee-label">Transfer Fee</span>
+                    <span class="detail-value green" id="no-fees-text">No Fees</span>
                 </div>
                 <div class="detail-row last">
-                    <span class="detail-label">Last Updated</span>
+                    <span class="detail-label" id="last-updated-label">Last Updated</span>
                     <span class="detail-value" id="current-time">Just now</span>
                 </div>
-            </div>
             </div>
         </div>
 
         <footer class="fade-in-up delay-2">
-            <p>Secure & Encrypted • 3mlati © 2026</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--gold-light);">Developed by Hussein Amer, Rami Rafid, and Zain Abedin</p>
+            <p id="secure-text">Secure &amp; Encrypted &bull; 3mlati &copy; 2026</p>
+            <div class="dev-credit">
+                <div class="dev-line"></div>
+                <p class="dev-label" id="developed-by-label">Developed by</p>
+                <div class="dev-names">
+                    <span>Hussein Amer</span>
+                    <span>Zain Abdein</span>
+                    <span>Rami Rafed</span>
+                    <span>Khalid Amer</span>
+                </div>
+                <div class="school-info">
+                       مشروع مدرسي • الصف التاسع (أ) • مدرسة عاكف الفايز - مسائي
+                </div>
+            </div>
         </footer>
     </main>
 
-    <script src="script.js"></script>
+    <!-- Currency Picker Modal -->
+    <div id="currency-picker-overlay" class="picker-overlay" onclick="closePicker()"></div>
+    <div id="currency-picker" class="currency-picker">
+        <div class="picker-header">
+            <h3 class="picker-title" id="picker-title">Select Currency</h3>
+            <button class="picker-close" onclick="closePicker()"><ion-icon name="close-outline"></ion-icon></button>
+        </div>
+        <div class="picker-search-wrap">
+            <ion-icon name="search-outline" class="search-icon"></ion-icon>
+            <input type="text" id="picker-search" class="picker-search" placeholder="Search currencies..." oninput="filterCurrencies()" autocomplete="off">
+        </div>
+        <div id="picker-list" class="picker-list"></div>
+    </div>
+
+    <script src="script.js?v=1.0.2"></script>
 </body>
 
 </html>
+
