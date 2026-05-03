@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>عملاتي 3mlati</title>
     <meta name="description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR.">
-    <meta name="keywords" content="3mlati, عملاتي, currency converter, exchange rates, currency transfer, SAR, Saudi Riyal">
+    <meta name="keywords" content="3mlati, عملاتي, currency converter, exchange rates, currency transfer, SAR, Saudi Riyal, JOD, USD, EUR">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -22,23 +22,36 @@
     <meta property="twitter:description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR.">
     <meta property="twitter:image" content="og-image.png">
 
+    <!-- Favicon & PWA -->
     <link rel="icon" type="image/png" href="https://i.ibb.co/fdQCb7W9/icon.png">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="apple-touch-icon" href="https://i.ibb.co/fdQCb7W9/icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="3mlati">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
     <main class="container">
+        <div class="lang-switcher">
+            <button id="lang-btn" aria-label="Switch Language">عربي</button>
+        </div>
         <header class="fade-in-up">
-            <div class="lang-switcher">
-                <button id="lang-btn" class="glass-btn" style="background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold-primary); color: var(--gold-light); padding: 0.4rem 0.8rem; border-radius: 8px; cursor: pointer; font-family: var(--font-ar); font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">عربي</button>
-            </div>
             <div class="brand">
-                <div class="logo-icon glass">
+                <div class="logo-icon">
                     <ion-icon name="wallet-outline"></ion-icon>
                 </div>
                 <h1 class="logo">عملاتي <span>3mlati</span></h1>
@@ -46,19 +59,19 @@
             <p class="subtitle" id="subtitle-text">Seamless Currency Transfer</p>
         </header>
 
-        <div class="converter-card glass fade-in-up delay-1">
+        <div class="converter-card fade-in-up delay-1">
 
             <!-- From Section -->
             <div class="input-section">
                 <div class="section-label" id="you-send-text">You Send</div>
                 <div class="input-group glass-input">
-                    <div class="currency-selector" id="from-selector" onclick="openPicker('from')">
-                        <img src="https://flagcdn.com/w40/jo.png" alt="JOD" class="flag-icon" id="from-flag">
+                    <div class="currency-selector" id="from-selector" onclick="openPicker('from')" role="button" aria-label="Select from currency">
+                        <img src="https://flagcdn.com/w40/jo.png" alt="JOD flag" class="flag-icon" id="from-flag">
                         <span class="currency-select" id="from-currency-display">JOD</span>
                         <input type="hidden" id="from-currency" value="JOD">
                         <ion-icon name="chevron-down-outline" class="select-arrow"></ion-icon>
                     </div>
-                    <input type="number" id="from-amount" value="0" min="0" placeholder="0.00" class="amount-input">
+                    <input type="number" id="from-amount" value="1" min="0" step="any" placeholder="0.00" class="amount-input" inputmode="decimal">
                 </div>
                 <div class="currency-name" id="from-name">Jordanian Dinar</div>
             </div>
@@ -66,7 +79,7 @@
             <!-- Swap Divider -->
             <div class="swap-container">
                 <div class="line"></div>
-                <button id="swap-btn" class="swap-btn glass-btn" aria-label="Swap currencies">
+                <button id="swap-btn" class="swap-btn" aria-label="Swap currencies">
                     <ion-icon name="swap-vertical-outline"></ion-icon>
                 </button>
                 <div class="line"></div>
@@ -75,9 +88,9 @@
             <!-- To Section -->
             <div class="input-section">
                 <div class="section-label" id="they-receive-text">They Receive</div>
-                <div class="input-group glass-input focus-highlight">
-                    <div class="currency-selector" id="to-selector" onclick="openPicker('to')">
-                        <img src="https://flagcdn.com/w40/us.png" alt="USD" class="flag-icon" id="to-flag">
+                <div class="input-group glass-input">
+                    <div class="currency-selector" id="to-selector" onclick="openPicker('to')" role="button" aria-label="Select to currency">
+                        <img src="https://flagcdn.com/w40/us.png" alt="USD flag" class="flag-icon" id="to-flag">
                         <span class="currency-select" id="to-currency-display">USD</span>
                         <input type="hidden" id="to-currency" value="USD">
                         <ion-icon name="chevron-down-outline" class="select-arrow"></ion-icon>
@@ -90,8 +103,8 @@
             <!-- Details -->
             <div class="rate-details glass-details">
                 <div class="detail-row">
-                    <span class="detail-label" id="exchange-rate-label">Exchange Rate</span>
-                    <span class="detail-value highlight" id="exchange-rate-text">1 JOD = 1.41 USD</span>
+                    <span class="detail-label" id="exchange-rate-label">Exchange Rate <span class="live-dot" id="live-dot" title="Live rates"></span></span>
+                    <span class="detail-value highlight" id="exchange-rate-text" dir="ltr">1 JOD = 1.41 USD</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label" id="transfer-fee-label">Transfer Fee</span>
@@ -116,7 +129,7 @@
                     <span>Khalid Amer</span>
                 </div>
                 <div class="school-info">
-                       مشروع مدرسي • الصف التاسع (أ) • مدرسة عاكف الفايز - مسائي
+                    مشروع مدرسي &bull; الصف التاسع (أ) &bull; مدرسة عاكف الفايز - مسائي
                 </div>
             </div>
         </footer>
@@ -124,20 +137,21 @@
 
     <!-- Currency Picker Modal -->
     <div id="currency-picker-overlay" class="picker-overlay" onclick="closePicker()"></div>
-    <div id="currency-picker" class="currency-picker">
+    <div id="currency-picker" class="currency-picker" role="dialog" aria-label="Currency Selector" aria-modal="true">
         <div class="picker-header">
             <h3 class="picker-title" id="picker-title">Select Currency</h3>
-            <button class="picker-close" onclick="closePicker()"><ion-icon name="close-outline"></ion-icon></button>
+            <button class="picker-close" onclick="closePicker()" aria-label="Close">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
         </div>
         <div class="picker-search-wrap">
             <ion-icon name="search-outline" class="search-icon"></ion-icon>
-            <input type="text" id="picker-search" class="picker-search" placeholder="Search currencies..." oninput="filterCurrencies()" autocomplete="off">
+            <input type="text" id="picker-search" class="picker-search" placeholder="Search currencies..." oninput="filterCurrencies()" autocomplete="off" inputmode="search">
         </div>
         <div id="picker-list" class="picker-list"></div>
     </div>
 
-    <script src="script.js?v=1.0.2"></script>
+    <script src="script.js?v=2.0.0"></script>
 </body>
 
 </html>
-
