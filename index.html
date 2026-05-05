@@ -4,23 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>عملاتي 3mlati</title>
-    <meta name="description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR.">
-    <meta name="keywords" content="3mlati, عملاتي, currency converter, exchange rates, currency transfer, SAR, Saudi Riyal, JOD, USD, EUR">
+    <title>3mlati عملاتي - Premium Currency Converter</title>
+    <meta name="description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR. Track live exchange rates with 3mlati. تحويل عملات وتحويل من دينار الى دولار.">
+    <meta name="keywords" content="3mlati, عملاتي, تحويل من دينار الى دولار, تحويل عملات, currency converter, exchange rates, currency transfer, SAR, Saudi Riyal, JOD, USD, EUR, conversion tool, live rates">
+    <meta name="author" content="Hussein Amer, Zain Abdein, Rami Rafed, Khalid Amer">
+    <meta name="robots" content="index, follow">
+    <meta name="msvalidate.01" content="A491330597E0C2E293F8C7E1304C151E" />
+    <link rel="canonical" href="https://mlaticurrency.web.app/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://3mlati.com/">
-    <meta property="og:title" content="عملاتي 3mlati - Premium Currency Converter">
-    <meta property="og:description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR.">
-    <meta property="og:image" content="og-image.png">
+    <meta property="og:url" content="https://mlaticurrency.web.app/">
+    <meta property="og:site_name" content="3mlati عملاتي">
+    <meta property="og:title" content="3mlati عملاتي - Premium Currency Converter | تحويل عملات">
+    <meta property="og:description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR. تحويل من دينار الى دولار.">
+    <meta property="og:image" content="https://i.ibb.co/Y4hgCQq9/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="3mlati Currency Converter Preview">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_JO">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://3mlati.com/">
-    <meta property="twitter:title" content="عملاتي 3mlati - Premium Currency Converter">
-    <meta property="twitter:description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR.">
-    <meta property="twitter:image" content="og-image.png">
+    <meta property="twitter:url" content="https://mlaticurrency.web.app/">
+    <meta property="twitter:title" content="3mlati عملاتي - Premium Currency Converter | تحويل عملات">
+    <meta property="twitter:description" content="Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR. تحويل من دينار الى دولار.">
+    <meta property="twitter:image" content="https://i.ibb.co/Y4hgCQq9/og-image.jpg">
+    <meta name="twitter:site" content="@3mlati">
+    <meta name="twitter:creator" content="@3mlati">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "3mlati عملاتي",
+      "url": "https://mlaticurrency.web.app/",
+      "description": "Seamless currency transfer and real-time conversion for JOD, USD, EUR, TRY, IQD, SYP, and SAR. تحويل من دينار الى دولار.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "author": {
+        "@type": "Person",
+        "name": "Hussein Amer"
+      }
+    }
+    </script>
 
     <!-- Favicon & PWA -->
     <link rel="icon" type="image/png" href="https://i.ibb.co/fdQCb7W9/icon.png">
@@ -37,7 +66,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3.3">
 
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -46,6 +75,10 @@
 
 <body>
     <main class="container">
+        <div id="offline-banner" class="offline-banner">
+            <ion-icon name="cloud-offline-outline"></ion-icon>
+            <span id="offline-text">Offline Mode — Using cached rates</span>
+        </div>
         <div class="lang-switcher">
             <button id="lang-btn" aria-label="Switch Language">عربي</button>
         </div>
@@ -73,7 +106,17 @@
                     </div>
                     <input type="number" id="from-amount" value="1" min="0" step="any" placeholder="0.00" class="amount-input" inputmode="decimal">
                 </div>
-                <div class="currency-name" id="from-name">Jordanian Dinar</div>
+                <div class="quick-amounts-wrapper" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="currency-name" id="from-name">Jordanian Dinar</div>
+                    <div class="quick-amounts" id="quick-amounts">
+                        <button class="quick-amount-btn" onclick="addAmount(10)">+10</button>
+                        <button class="quick-amount-btn" onclick="addAmount(100)">+100</button>
+                        <button class="quick-amount-btn" onclick="addAmount(1000)">+1k</button>
+                        <button class="quick-amount-btn clear-btn" onclick="clearAmount()" aria-label="Clear Amount">
+                            <ion-icon name="backspace-outline"></ion-icon>
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <!-- Swap Divider -->
@@ -96,6 +139,9 @@
                         <ion-icon name="chevron-down-outline" class="select-arrow"></ion-icon>
                     </div>
                     <input type="text" id="to-amount" placeholder="0.00" class="amount-input" readonly>
+                    <button class="copy-btn" onclick="copyResult()" aria-label="Copy result" id="copy-btn" title="Copy result">
+                        <ion-icon name="copy-outline"></ion-icon>
+                    </button>
                 </div>
                 <div class="currency-name" id="to-name">US Dollar</div>
             </div>
