@@ -80,6 +80,7 @@ const namesAR = {
 
 // ── State ─────────────────────────────────────────────────────
 let isArabic = false;
+let favorites = JSON.parse(localStorage.getItem('3mlati_favorites')) || [];
 
 // ── DOM refs ──────────────────────────────────────────────────
 const fromCurrency    = document.getElementById('from-currency');
@@ -93,6 +94,9 @@ const toName          = document.getElementById('to-name');
 const swapBtn         = document.getElementById('swap-btn');
 const exchangeRateText = document.getElementById('exchange-rate-text');
 const currentTimeText  = document.getElementById('current-time');
+const liveDot          = document.getElementById('live-dot');
+const offlineBanner    = document.getElementById('offline-banner');
+const offlineText      = document.getElementById('offline-text');
 
 // ── Flag URL helper ───────────────────────────────────────────
 function getFlagUrl(code) {
@@ -183,13 +187,61 @@ function swapCurrencies() {
     calculate();
 }
 
+// ── Quick Amounts ─────────────────────────────────────────────
+function addAmount(val) {
+    const current = parseFloat(fromAmount.value) || 0;
+    fromAmount.value = current + val;
+    calculate();
+}
+
+function clearAmount() {
+    fromAmount.value = '';
+    calculate();
+}
+
+// ── Copy Result ───────────────────────────────────────────────
+function copyResult() {
+    const textToCopy = toAmount.value;
+    if (!textToCopy || textToCopy === '—' || textToCopy === '0.00') return;
+
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const copyBtn = document.getElementById('copy-btn');
+        const icon = copyBtn.querySelector('ion-icon');
+        if(icon) icon.name = 'checkmark-outline';
+        copyBtn.classList.add('copied');
+        
+        setTimeout(() => {
+            if(icon) icon.name = 'copy-outline';
+            copyBtn.classList.remove('copied');
+        }, 1500);
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+
 // ── Live clock ────────────────────────────────────────────────
 function updateTime() {
     const now     = new Date();
     const opts    = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
     const locale  = isArabic ? 'ar-JO' : 'en-US';
-    const prefix  = isArabic ? 'اليوم، ' : 'Today, ';
-    currentTimeText.textContent = prefix + now.toLocaleTimeString(locale, opts);
+    
+    // If we have a successful rates fetch, show time since then, else current clock
+    if (lastRatesUpdate) {
+        const diffSec = Math.floor((now - lastRatesUpdate) / 1000);
+        if (diffSec < 60) {
+            currentTimeText.textContent = isArabic ? 'الآن' : 'Just now';
+        } else {
+            const mins = Math.floor(diffSec / 60);
+            if (isArabic) {
+                currentTimeText.textContent = `منذ ${mins} دقيقة`;
+            } else {
+                currentTimeText.textContent = `${mins} min ago`;
+            }
+        }
+    } else {
+        const prefix  = isArabic ? 'اليوم، ' : 'Today, ';
+        currentTimeText.textContent = prefix + now.toLocaleTimeString(locale, opts);
+    }
 }
 
 // ── Event listeners ───────────────────────────────────────────
@@ -208,6 +260,11 @@ const _k = 'ZjMwZDRhYTU4NjAxNzAzMDc2YWJmNzI2';
 const API_URL = `https://v6.exchangerate-api.com/v6/${atob(_k)}/latest/USD`;
 
 async function fetchRates() {
+    if (!navigator.onLine) {
+        handleOffline();
+        return;
+    }
+
     try {
         const res  = await fetch(API_URL);
         const data = await res.json();
@@ -217,15 +274,54 @@ async function fetchRates() {
                     rates[code] = data.conversion_rates[code];
                 }
             });
+            
+            // Cache successful rates
+            localStorage.setItem('3mlati_cached_rates', JSON.stringify({
+                rates: rates,
+                timestamp: new Date().getTime()
+            }));
+
+            // Visual feedback
+            if (liveDot) liveDot.classList.add('visible');
+            if (offlineBanner) offlineBanner.classList.remove('active');
+            exchangeRateText.classList.add('rate-updated');
+            setTimeout(() => exchangeRateText.classList.remove('rate-updated'), 1000);
+            
+            lastRatesUpdate = new Date();
             calculate();
         }
     } catch (e) {
         console.warn('Live rates unavailable — using fallback rates.', e);
+        handleOffline();
     }
 }
 
+function handleOffline() {
+    if (liveDot) liveDot.classList.remove('visible');
+    if (offlineBanner) offlineBanner.classList.add('active');
+    
+    // Try to load cached rates
+    const cached = JSON.parse(localStorage.getItem('3mlati_cached_rates'));
+    if (cached && cached.rates) {
+        Object.assign(rates, cached.rates);
+        lastRatesUpdate = new Date(cached.timestamp);
+        calculate();
+    }
+}
+
+window.addEventListener('online', () => {
+    fetchRates();
+});
+
+window.addEventListener('offline', () => {
+    handleOffline();
+});
+
+let lastRatesUpdate = null;
+
 // ── Initialise ────────────────────────────────────────────────
 setInterval(updateTime, 1000);
+setInterval(fetchRates, 60000); // Fetch every 1 minute
 updateTime();
 calculate();
 fetchRates();
@@ -249,6 +345,10 @@ const translations = {
         developedBy:  'Developed by',
         pickerTitle:  'Select Currency',
         pickerSearch: 'Search currencies...',
+        favorites:    'Favorites',
+        popular:      'Popular',
+        all:          'All Currencies',
+        offline:      'Offline Mode — Using cached rates',
         dir:          'ltr',
         lang:         'en'
     },
@@ -265,6 +365,10 @@ const translations = {
         developedBy:  'تم التطوير بواسطة',
         pickerTitle:  'اختر العملة',
         pickerSearch: 'ابحث عن عملة...',
+        favorites:    'المفضلة',
+        popular:      'الأكثر استخداماً',
+        all:          'جميع العملات',
+        offline:      'وضع الأوفلاين — يتم استخدام البيانات المخزنة',
         dir:          'rtl',
         lang:         'ar'
     }
@@ -291,6 +395,7 @@ function setLanguage(arabic) {
     setText('no-fees-text',      t.noFees);
     setText('last-updated-label', t.lastUpdated);
     setText('developed-by-label', t.developedBy);
+    setText('offline-text',      t.offline);
     setHTML('secure-text',       t.secureText);
 
     // Picker UI (if visible)
@@ -355,14 +460,45 @@ function selectCurrency(code) {
     closePicker();
 }
 
+function toggleFavorite(code, e) {
+    if (e) e.stopPropagation();
+    const index = favorites.indexOf(code);
+    if (index > -1) {
+        favorites.splice(index, 1);
+    } else {
+        favorites.push(code);
+    }
+    localStorage.setItem('3mlati_favorites', JSON.stringify(favorites));
+    renderPickerList(pickerSearch.value.trim());
+}
+
 function renderPickerList(query) {
     const currentVal  = pickerTarget ? document.getElementById(pickerTarget + '-currency').value : '';
     const activeNames = isArabic ? namesAR : names;
+    const t = isArabic ? translations.ar : translations.en;
     const q = query.toLowerCase();
     let html = '';
 
     if (!q) {
-        html += `<div class="picker-section-label">${isArabic ? '⭐ الأكثر استخداماً' : '⭐ Popular'}</div>`;
+        // Favorites Section
+        if (favorites.length > 0) {
+            html += `<div class="picker-section-label">⭐ ${t.favorites}</div>`;
+            html += '<div class="popular-chips">';
+            favorites.forEach(code => {
+                const sel = code === currentVal ? ' selected' : '';
+                html += `<div class="popular-chip${sel}" onclick="selectCurrency('${code}')">`;
+                html += `<img src="${getFlagUrl(code)}" alt="${code}" onerror="this.style.display='none'">`;
+                html += `<span>${code}</span>`;
+                html += `<button class="chip-remove" onclick="toggleFavorite('${code}', event)" aria-label="Remove favorite">`;
+                html += `<ion-icon name="close-circle"></ion-icon>`;
+                html += `</button>`;
+                html += '</div>';
+            });
+            html += '</div>';
+            html += '<div class="picker-divider"></div>';
+        }
+
+        html += `<div class="picker-section-label">🔥 ${t.popular}</div>`;
         html += '<div class="popular-chips">';
         popularCurrencies.forEach(code => {
             const sel = code === currentVal ? ' selected' : '';
@@ -372,7 +508,7 @@ function renderPickerList(query) {
         });
         html += '</div>';
         html += '<div class="picker-divider"></div>';
-        html += `<div class="picker-section-label">${isArabic ? '🌍 جميع العملات' : '🌍 All Currencies'}</div>`;
+        html += `<div class="picker-section-label">🌍 ${t.all}</div>`;
     }
 
     const filtered = allCurrencyCodes.filter(code => {
@@ -389,13 +525,21 @@ function renderPickerList(query) {
     filtered.forEach(code => {
         const sel  = code === currentVal ? ' selected' : '';
         const name = activeNames[code] || code;
+        const isFav = favorites.includes(code);
+        
         html += `<div class="picker-item${sel}" onclick="selectCurrency('${code}')">`;
         html += `<img src="${getFlagUrl(code)}" alt="${code}" onerror="this.style.display='none'">`;
         html += '<div class="picker-item-info">';
         html += `<div class="picker-item-code">${code}</div>`;
         html += `<div class="picker-item-name">${name}</div>`;
         html += '</div>';
+        
+        html += `<div class="picker-item-actions">`;
+        html += `<button class="fav-btn${isFav ? ' active' : ''}" onclick="toggleFavorite('${code}', event)" aria-label="Toggle favorite">`;
+        html += `<ion-icon name="${isFav ? 'star' : 'star-outline'}"></ion-icon>`;
+        html += `</button>`;
         html += `<ion-icon name="checkmark-outline" class="picker-item-check"></ion-icon>`;
+        html += `</div>`;
         html += '</div>';
     });
 
