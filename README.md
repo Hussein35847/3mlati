@@ -53,7 +53,7 @@ ZAR, NGN, KES, GHS, ETB**
 
 ## 🚀 Live Demo
 
-👉 https://mlaticurrency.web.app/
+👉 https://omlati.web.app/
 
 ---
 
@@ -126,7 +126,7 @@ If you like this project, consider giving it a star ⭐ — it really helps!
 
 ## 🚀 تجربة التطبيق
 
-👉 https://mlaticurrency.web.app/
+👉 https://omlati.web.app/
 
 ---
 
